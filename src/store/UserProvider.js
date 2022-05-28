@@ -217,6 +217,19 @@ const UserProvider = (props) => {
     whitelist: UserState.whitelist,
     getUsersList: getUsersListHandler,
     getUserInformation: getUserInformationHandler,
-    getAppOwner: loadAppOwnerDetailsHandler,
+    getAppOwner: loadAppOwnerHandler,
+    getAppOwnerDetails: loadAppOwnerHandler,
+    loadUserBalance: loadUserBalanceHandler,
+    loadWhitelist: loadWhitelistHandler,
+    loadContract: loadContractHandler,
+    setUserIsLoading: setUserIsLoadingHandler,
   }
+
+  return (
+    <UserContext.Provider value={userContent}>
+      {props.children}
+    </UserContext.Provider>
+  )
 }
+
+export default UserProvider
