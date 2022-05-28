@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 8.0.0;
+pragma solidity 0.8.0;
 
 contract DemoPresale {
 
@@ -29,7 +29,7 @@ contract DemoPresale {
 
     function addUser(address _who, string calldata _name) external returns (bool) {
         for(uint x=0;x<users.length;x++){
-            if(msg.sender == users[x]._who){
+            if(msg.sender == users[x].who){
                 users[x] = User(_who, _name);
                 return true;
             }
@@ -40,7 +40,7 @@ contract DemoPresale {
 
     function getUser(address _who) public view returns(User memory){
         User memory user;
-        for(uint x=0;x<user.length;x++){
+        for(uint x=0;x<users.length;x++){
             if(users[x].who == _who){user = users[x];}
         }
         return user;
