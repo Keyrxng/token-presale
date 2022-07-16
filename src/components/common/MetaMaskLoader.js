@@ -1,4 +1,4 @@
-import React, { useeffect } from 'React'
+import React, { useEffect } from 'react'
 import AOS from 'aos'
 
 function MetaMaskLoader() {

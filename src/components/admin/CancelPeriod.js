@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { useToasts } from 'react-toast-notifications'
+import swal from 'sweetalert'
 import { ImClost2 } from 'react-icons/im'
 import { FaEthereum } from 'react-icons/fa'
 import { AiFillInfoCircle } from 'react-icons/ai'

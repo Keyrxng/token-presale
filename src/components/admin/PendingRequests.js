@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useMemo } from 'react'
 import { Jazzicon } from '@ukstv/jazzicon-react'
-import { useToasts } from 'react-toast-notifications'
+import swal from 'sweetalert'
 import { Link } from 'react-router-dom'
 import { HiArrowDown } from 'react-icons/hi'
 import TokenContext from '../../store/token-context'

@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import Web3Context from '../../store/web3-context'
 import TokenContext from '../../store/token-context'
 import UserContext from '../../store/user-context'
-import web3 from '../../connection/web3'
+import web3 from '../../lib/web3'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { useToasts } from 'react-toast-notifications'
+import swal from 'sweetalert'
 import { AiFillInfoCircle } from 'react-icons/ai'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -19,7 +19,6 @@ function MintForm() {
   const userCtx = useContext(UserContext)
   const [MetaMaskOpened, setMetaMaskOpened] = useState(false)
   const [totalAvailable, setTotalAvailable] = useState(0)
-  const { addToast } = useToasts()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -36,7 +35,7 @@ function MintForm() {
   const [endDate, setEndDate] = useState(new Date())
   const [tokenAmount, setTokenAmount] = useState()
   const [tokenPrice, setTokenPrice] = useState()
-  const [tokenHarcap, setTokenHardcap] = useState()
+  const [tokenHardcap, setTokenHardcap] = useState()
 
   useEffect(() => {
     if (userCtx.usersList && tokenCtx.totalSupply) {
@@ -50,7 +49,7 @@ function MintForm() {
 
   function onSubmit(data) {
     if (endDate.getTime() <= Date.now()) {
-      addToast('End date cannot be in the past', {
+      swal('End date cannot be in the past', {
         appearance: 'error',
       })
     } else {
@@ -70,7 +69,7 @@ function MintForm() {
         })
         .on('transactionHash', (hash) => {
           setMetaMaskOpened(false)
-          addToast('Great! You have successfully minted your tokens', {
+          swal('Great! You have successfully minted your tokens', {
             appearance: 'success',
           })
         })
@@ -85,7 +84,7 @@ function MintForm() {
           setTimeout(() => navigate('/'), 1000)
         })
         .on('error', (e) => {
-          addToast('Something went wrong while minting', {
+          swal('Something went wrong while minting', {
             appearance: 'error',
           })
           setMetaMaskOpened(false)

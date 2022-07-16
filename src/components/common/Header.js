@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { appSettings } from '../../helpers/settings'
+import { appSettings } from '../../lib/settings'
 import { Jazzicon } from '@ukstv/jazzicon-react'
 import Web3Context from '../../store/web3-context'
 import UserContext from '../../store/user-context'

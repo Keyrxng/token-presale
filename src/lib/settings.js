@@ -2,5 +2,5 @@ export const appSettings = {
   logo: './logo.svg',
   tokenLogo: '',
   tokenName: 'Test',
-  activeNetworkName: 'SmartChain Testnet',
+  activeNetworkName: 'BSC Testnet',
 }

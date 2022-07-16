@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { AiFillInfoCircle } from 'react-icons/ai'
 import { Jazzicon } from '@ukstv/jazzicon-react'
-import { useToasts } from 'react-toast-notifications'
+import swal from 'sweetalert'
 import Select from 'react-select'
 import TokenContext from '../../store/token-context'
 import Web3Context from '../../store/web3-context'

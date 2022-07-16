@@ -4,14 +4,14 @@ import Web3Context from '../../store/web3-context'
 import TokenContext from '../../store/token-context'
 import UserContext from '../../store/user-context'
 import { useForm } from 'react-hook-form'
-import { useToasts } from 'react-toast-notifications'
 import { usePopperTooltip } from 'react-popper-tooltip'
 import { TiCancel } from 'react-icons/ti'
-import { precision, toEther } from '../../helpers/utils'
+import { precision, toEther } from '../../lib/utils'
 import { BsCalendar2CheckFill } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import 'react-datepicker/dist/react-datepicker.css'
 import AOS from 'aos'
+import swal from 'sweetalert'
 
 import MetaMaskLoader from '../common/MetaMaskLoader'
 
@@ -20,7 +20,6 @@ function BuyForm() {
   const web3Ctx = useContext(Web3Context)
   const userCtx = useContext(UserContext)
   const [metaMaskOpened, setMetaMaskOpened] = useState(false)
-  const { addToast } = useToasts()
   const navigate = useNavigate()
   const [price, setPrice] = useState(0)
   const [minimumTokens, setMinumumTokens] = useState(0)
@@ -86,6 +85,12 @@ function BuyForm() {
     console.log(tokenHardcap)
     console.log(round)
   }, [tokenCtx.minimumTokens, tokenCtx.activePeriod, round])
+
+  const {
+    register,
+    handleSumbit,
+    formState: { errors },
+  } = useForm()
 
   function onSubmit(data) {
     if (price)
@@ -178,7 +183,7 @@ function BuyForm() {
   )
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed || (tokenctx.activePeriod && !tokenCtx.activePeriod.status)) {
+    if (completed || (tokenCtx.activePeriod && !tokenCtx.activePeriod.status)) {
       return <Complete />
     } else {
       return (

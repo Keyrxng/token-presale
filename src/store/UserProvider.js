@@ -152,7 +152,7 @@ const UserProvider = (props) => {
     try {
       const usersList = await userContract.methods.getUsersList().call()
       const userBalance = await Promise.all(
-        userList.map(
+        usersList.map(
           async (el) => await tokenContract.methods.balanceOf(el[0]).call(),
         ),
       )
@@ -160,7 +160,7 @@ const UserProvider = (props) => {
         type: 'GETUSERSLIST',
         payload: { usersList, userBalance },
       })
-      return { userList, userBalance }
+      return { usersList, userBalance }
     } catch (err) {
       console.log('getUsersListHandler Error: ', err)
     }
@@ -178,7 +178,7 @@ const UserProvider = (props) => {
 
   const loadUserBalanceHandler = async (contract, account) => {
     try {
-      const userBalance = await contracts.methods.balanceOf(account).call()
+      const userBalance = await contract.methods.balanceOf(account).call()
       dispatchUserAction({ type: 'GETUSERBALANCE', userBalance: userBalance })
       return userBalance
     } catch (error) {
@@ -188,7 +188,7 @@ const UserProvider = (props) => {
 
   const loadWhitelistHandler = async (contract) => {
     try {
-      const whitelist = await contracts.methods.getWhitelist().call()
+      const whitelist = await contract.methods.getWhitelist().call()
       dispatchUserAction({ type: 'GETWHITELIST', whitelist: whitelist })
       return whitelist
     } catch (error) {
@@ -205,7 +205,7 @@ const UserProvider = (props) => {
     return appOwnerDetails
   }
 
-  const UserContext = {
+  const userContext = {
     contract: UserState.contract,
     appOwner: UserState.appOwner,
     appOwnerDetails: UserState.appOwnerDetails,
@@ -226,7 +226,7 @@ const UserProvider = (props) => {
   }
 
   return (
-    <UserContext.Provider value={userContent}>
+    <UserContext.Provider value={userContext}>
       {props.children}
     </UserContext.Provider>
   )

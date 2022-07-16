@@ -173,7 +173,7 @@ const TokenProvider = (props) => {
 
   const loadTotalSupplyHandler = async (contract) => {
     try {
-      const totalSupply = await contracts.methods.totalSupply().call()
+      const totalSupply = await contract.methods.totalSupply().call()
       dispatchTokenAction({ type: 'LOADTOTALSUPPLY', totalSupply: totalSupply })
       return totalSupply
     } catch (error) {
@@ -183,7 +183,7 @@ const TokenProvider = (props) => {
 
   const loadAppOwnerHandler = async (contract) => {
     try {
-      const appOwner = await contracts.methods.owner().call()
+      const appOwner = await contract.methods.owner().call()
       dispatchTokenAction({ type: 'GETOWNER', appOwner: appOwner })
       return appOwner
     } catch (error) {
@@ -193,7 +193,7 @@ const TokenProvider = (props) => {
 
   const loadActivityHandler = async (contract) => {
     try {
-      const activity = await contracts.methods.getActivities().call()
+      const activity = await contract.methods.getActivities().call()
       dispatchTokenAction({ type: 'GETACTIVITY', activity: activity })
       return activity
     } catch (error) {
@@ -228,7 +228,7 @@ const TokenProvider = (props) => {
 
   const loadTokenHardcapHandler = async (contract) => {
     try {
-      const hardcap = await contracts.methods.hardcap().call()
+      const hardcap = await contract.methods.hardcap().call()
       dispatchTokenAction({ type: 'GETHARDCAP', hardcap: hardcap })
       return hardcap
     } catch (error) {
@@ -238,7 +238,7 @@ const TokenProvider = (props) => {
 
   const loadMinimumTokensHandler = async (contract) => {
     try {
-      const minimumTokens = await contracts.methods.getMinimumTokens().call()
+      const minimumTokens = await contract.methods.getMinimumTokens().call()
       dispatchTokenAction({
         type: 'GETMINIMUMTOKENS',
         minimumTokens: minimumTokens,

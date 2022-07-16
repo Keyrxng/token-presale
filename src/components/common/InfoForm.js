@@ -3,9 +3,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Web3Context from '../../store/web3-context'
 import TokenContext from '../../store/token-context'
 import UserContext from '../../store/user-context'
-import web3 from '../../helpers/web3'
+import web3 from '../../lib/web3'
 import AOS from 'aos'
-import { MetaMaskLoader } from './MetaMaskLoader'
+import MetaMaskLoader from '../common/MetaMaskLoader'
 import { useForm } from 'react-hook-form'
 import { swal } from 'sweetalert'
 
@@ -75,3 +75,5 @@ function InfoForm({ codeName, setFullName }) {
     </>
   )
 }
+
+export default InfoForm
